@@ -4,14 +4,14 @@
   
   
   $parola_da_censurare = $_GET["censurare"];
-  $testo_censurato = str_replace($parola_da_censurare, '***', $testo);
+  $testo_censurato = str_ireplace($parola_da_censurare, '***', $testo);
 
   //Censurare il testo ma non rimpiazzandolo, metodo 1
-  $testo_censurato_non_rimpiazzato = str_replace($parola_da_censurare, '', $testo);
+  $testo_censurato_non_rimpiazzato = str_ireplace($parola_da_censurare, '', $testo);
 
   //Metodo 2
   $array_testo_censurato = explode('***', $testo_censurato);
-  $str_testo_censurato = implode('', $array_testo_censurato)
+  $str_testo_censurato = implode('', $array_testo_censurato);
 
 ?>
 
@@ -29,23 +29,31 @@
 
   <h2>Paragrafo:</h5>
   <p> <?php echo $testo; ?> </p>
-
   <h2>Lunghezza paragrafo: <?php echo strlen($testo); ?></h2>
+
+  <hr>
 
   <h2>Paragrafo censurato:</h5>
   <p> <?php echo $testo_censurato; ?> </p>
-
   <h2>Lunghezza paragrafo censurato: <?php echo strlen($testo_censurato); ?></h2>
+
+  <hr>
 
   <h2>Paragrafo con parola censurata non rimpiazzata:</h5>
   <p> <?php echo $testo_censurato_non_rimpiazzato; ?> </p>
-
   <h2>Lunghezza paragrafo censurato: <?php echo strlen($testo_censurato_non_rimpiazzato); ?></h2>
+
+  <hr>
 
   <h2>Paragrafo con explode ed implode:</h5>
   <p> <?php echo $str_testo_censurato; ?> </p>
-
   <h2>Lunghezza paragrafo: <?php echo strlen($str_testo_censurato); ?></h2>
+
+  <hr>
+
+  <h2>Paragrafo censurato:</h5>
+  <p> <?php echo $testo_censurato; ?> </p>
+  <h2>Lunghezza paragrafo censurato con sottrazione: <?php echo strlen($testo_censurato) - (substr_count($testo, $parola_da_censurare) * 3); ?></h2>
   
 </body>
 </html>
